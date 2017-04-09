@@ -1,0 +1,18 @@
+div.helloWorldReact {
+    border: 1px dashed gray;
+    border-radius: 20px;
+    background-color: lightgreen;
+    box-shadow: 4px 4px 4px #e1e0e0;
+    padding: 15px;
+    margin-bottom: 20px;
+    /*width: 200px;*/
+    text-align: center;
+    width: 350px;
+}
+
+.helloWorldReact h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Gilda Display', serif;
+    font-size: 12px;
+}

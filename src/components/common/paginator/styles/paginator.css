@@ -1,0 +1,38 @@
+/*- PAGING -*/
+.PO-paging {
+  background: #eeeeee;
+  padding: 10px 10px 5px 10px; }
+  .PO-paging:after {
+    content: '';
+    display: block;
+    clear: both; }
+  .PO-paging ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    float: left; }
+    .PO-paging ul li {
+      float: left; }
+      .PO-paging ul li a, .PO-paging ul li span {
+        font-weight: bold;
+        font-size: 0.9em;
+        -webkit-transition: background 0.2s ease-in-out;
+                transition: background 0.2s ease-in-out;
+        text-decoration: none;
+        color: #595a5a;
+        display: block;
+        padding: 10px;
+        border-radius: 3px; }
+        .PO-paging ul li a.active:not(span), .PO-paging ul li a:hover:not(span), .PO-paging ul li span.active:not(span), .PO-paging ul li span:hover:not(span) {
+          background: #d6d6d6; }
+    .PO-paging ul:after {
+      content: '';
+      display: block;
+      clear: both; }
+  .PO-paging .PO-pageCount {
+    font-size: 0.8em;
+    color: #595a5a;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    float: right; }

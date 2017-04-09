@@ -1,0 +1,224 @@
+.offScreen {
+  position: fixed;
+  top: -10000px;
+  left: -10000px; }
+
+.PO-wrapper {
+  font-family: Arial;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  margin: 0px auto;
+  border: 3px solid #e4e4e4;
+  box-sizing: border-box;
+  position: relative;
+  /*margin: 100px auto;*/
+  max-width: 700px;
+  -webkit-font-smoothing: antialiased; }
+
+/*- Off Screen style for accessibility -*/
+.PO-offScreen {
+  position: absolute;
+  top: -1000000px;
+  left: -1000000px; }
+
+/*- Portlet top Breadcrumbs -*/
+.PO-navigationBar {
+  background: #e4e4e4;
+  color: #595a5a;
+  padding: 10px 10px 10px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  display: table;
+  width: 100%;
+  box-sizing: border-box; }
+  .PO-navigationBar a {
+    color: #595a5a;
+    text-decoration: none;
+    font-weight: normal; }
+    .PO-navigationBar a:hover {
+      text-decoration: underline; }
+
+/*- Portlet Settings Bar -*/
+.PO-settingsBar {
+  background: #e4e4e4;
+  color: #595a5a;
+  padding: 10px;
+  font-size: 0.9em
+  /*- Portlet Settings Bar dividers -*/
+  /*- Portlet Settings Bar buttons -*/
+  /*- Portlet Settings Bar dropdown styles -*/ }
+  .PO-settingsBar ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px; }
+    .PO-settingsBar ul > li {
+      display: inline;
+      position: relative; }
+  .PO-settingsBar span {
+    display: inline-block;
+    margin: 0px;
+    font-size: 18px; }
+  .PO-settingsBar a {
+    color: #595a5a;
+    text-decoration: none;
+    font-weight: normal;
+    padding: 4px;
+    display: inline-block;
+    -webkit-transition: background 0.2s ease-in-out;
+            transition: background 0.2s ease-in-out; }
+    .PO-settingsBar a:hover {
+      background: #eeeeee;
+      border-radius: 3px; }
+  .PO-settingsBar .PO-settingsDropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0px;
+    width: 200px;
+    z-index: 3; }
+    .PO-settingsBar .PO-settingsDropdown ul {
+      background: #ffffff;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #cccccc;
+      border-top: none; }
+    .PO-settingsBar .PO-settingsDropdown .triangle {
+      width: 100%;
+      display: block;
+      height: 10px; }
+      .PO-settingsBar .PO-settingsDropdown .triangle:after {
+        content: '';
+        position: relative;
+        display: block;
+        left: 14px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 10px 8px;
+        border-color: transparent transparent #ffffff transparent;
+        z-index: 2; }
+    .PO-settingsBar .PO-settingsDropdown li {
+      display: block; }
+      .PO-settingsBar .PO-settingsDropdown li a {
+        color: #333333;
+        border-radius: 0px;
+        display: block;
+        padding: 10px;
+        /*font-weight: bold;*/
+        border-bottom: 1px solid #eeeeee; }
+        .PO-settingsBar .PO-settingsDropdown li a em {
+          margin: 0px 10px 0px 5px;
+          -webkit-transition: all 0.2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
+          color: #2E353E; }
+        .PO-settingsBar .PO-settingsDropdown li a:hover {
+          background: #EAEFF0; }
+          .PO-settingsBar .PO-settingsDropdown li a:hover em {
+            -webkit-transform: scale(1.1, 1.1);
+                -ms-transform: scale(1.1, 1.1);
+                    transform: scale(1.1, 1.1); }
+      .PO-settingsBar .PO-settingsDropdown li:last-child a {
+        border-bottom: 0px; }
+
+/*- Portlet information/settings/controls area -*/
+.PO-controlsTop {
+  background: #eeeeee;
+  border-bottom: 4px solid #a8a9ab;
+  padding: 15px; }
+  .PO-controlsTop .PO-title:not(:empty) {
+    font-weight: 600;
+    font-size: 30px;
+    padding-bottom: 15px; }
+
+/*- Portlet Search Bar -*/
+.PO-search {
+  background: #e4e4e4;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 600;
+  position: relative
+  /*- Portlet Settings Bar dropdown styles -*/ }
+  .PO-search input[type="text"] {
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing: 0.01em; }
+    .PO-search input[type="text"]:focus + .PO-searchDropdown {
+      display: block; }
+  .PO-search .PO-searchDropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% - 10px);
+    left: 10px;
+    width: calc(100% - 20px);
+    z-index: 3; }
+    .PO-search .PO-searchDropdown ul {
+      background: #ffffff;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #cccccc;
+      border-top: none;
+      list-style: none;
+      margin: 0px;
+      padding: 0px; }
+    .PO-search .PO-searchDropdown li {
+      display: block; }
+      .PO-search .PO-searchDropdown li a {
+        color: #333333;
+        border-radius: 0px;
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid #eeeeee; }
+        .PO-search .PO-searchDropdown li a > em {
+          margin: 0px 10px 0px 5px;
+          -webkit-transition: all 0.2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
+          color: #2E353E; }
+        .PO-search .PO-searchDropdown li a:hover {
+          background: #EAEFF0; }
+          .PO-search .PO-searchDropdown li a:hover em {
+            -webkit-transform: scale(1.1, 1.1);
+                -ms-transform: scale(1.1, 1.1);
+                    transform: scale(1.1, 1.1); }
+        .PO-search .PO-searchDropdown li a span {
+          font-size: 0.8em;
+          color: #a7a3a3;
+          float: right;
+          -webkit-transform: translate(0, 0.1em);
+              -ms-transform: translate(0, 0.1em);
+                  transform: translate(0, 0.1em)
+          /*em { color: #2E353E; }*/ }
+        .PO-search .PO-searchDropdown li a small {
+          font-size: 1em;
+          color: #206E9E; }
+      .PO-search .PO-searchDropdown li:last-child a {
+        border-bottom: 0px; }
+
+
+
+/*- Portlet mobile styles -*/
+.PO-wrapper.PO-mobileView .PO-pageButton, .PO-wrapper.PO-mobileView .PO-pageCount {
+  float: none;
+  text-align: center; }
+
+.PO-wrapper.PO-mobileView .PO-pageButton li {
+  float: none;
+  display: inline-block; }
+
+/*-- In Merged --*/
+.button {
+  border: 1px solid #ccc;
+  border-color: #c4cccc #acb5b5 #6f7777;
+  background: #F5F5F5;
+  padding: 5px 5px 4px 5px;
+  color: #333333;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 2px; }

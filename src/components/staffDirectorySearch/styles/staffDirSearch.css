@@ -1,0 +1,587 @@
+.PO-staffDirectory {
+  border: none
+  /*EMD CARD*/
+  /*END SLIDE OUT*/ }
+  .PO-staffDirectory .PO-controlsTop {
+    background: transparent;
+    border: none;
+    padding: 0; }
+  .PO-staffDirectory .DIR-search {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .PO-staffDirectory .DIR-search:after {
+      content: '';
+      display: block;
+      clear: both; }
+    .PO-staffDirectory .DIR-search > li {
+      float: left;
+      vertical-align: middle; }
+      .PO-staffDirectory .DIR-search > li.DIR-sGroups {
+        width: 20%; }
+      .PO-staffDirectory .DIR-search > li.DIR-sInput {
+        width: 60%; }
+      .PO-staffDirectory .DIR-search > li.DIR-sSubmit {
+        width: 20%; }
+  .PO-staffDirectory .DIR-userList {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0; }
+  .PO-staffDirectory .DIR-item {
+    border: 2px solid #dddddd;
+    padding: 10px 10px 10px 20px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    position: relative; }
+    .PO-staffDirectory .DIR-item:after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: #eeeeee;
+      -webkit-transition: background 0.4s;
+              transition: background 0.4s; }
+    .PO-staffDirectory .DIR-item.active:after {
+      background: #1d2228; }
+  .PO-staffDirectory .DIR-card {
+    display: table;
+    width: 100%; }
+    .PO-staffDirectory .DIR-card > * {
+      display: table-cell;
+      vertical-align: top; }
+    .PO-staffDirectory .DIR-card:after {
+      content: '';
+      display: block;
+      clear: both; }
+    .PO-staffDirectory .DIR-card .DIR-photo {
+      width: 110px;
+      height: 100px;
+      position: relative; }
+      .PO-staffDirectory .DIR-card .DIR-photo span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        display: block;
+        background-size: cover;
+        background-position: center center; }
+      .PO-staffDirectory .DIR-card .DIR-photo em {
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 100px;
+        width: 100px;
+        text-align: center;
+        font-size: 40px;
+        display: block;
+        font-weight: bold;
+        font-style: normal;
+        color: #9b9a9a;
+        background-color: #eeeeee;
+        display: none; }
+      .PO-staffDirectory .DIR-card .DIR-photo.DIR-noPhoto em {
+        display: block; }
+    .PO-staffDirectory .DIR-card .DIR-cardInfo ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      .PO-staffDirectory .DIR-card .DIR-cardInfo ul:after {
+        content: '';
+        display: block;
+        clear: both; }
+      .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-name {
+        font-size: 25px;
+        font-weight: bold;
+        color: #808285;
+        margin-bottom: 2px; }
+      .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-title {
+        color: #1d2228;
+        font-size: 16px; }
+      .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-groups {
+        color: #808285;
+        font-size: 12px; }
+        .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-groups li {
+          display: inline; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-groups li:after {
+            content: ', '; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-groups li:last-child:after {
+            content: ''; }
+      .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks {
+        display: table;
+        width: 100%; }
+        .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks > * {
+          display: table-cell;
+          vertical-align: middle; }
+        .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li {
+          float: left;
+          line-height: 35px; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li:after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            background: #ababab;
+            height: 20px;
+            position: relative;
+            top: 5px;
+            margin: 0 3px; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li:last-child:after {
+            visibility: hidden; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a {
+            color: #808285;
+            font-size: 12px;
+            text-decoration: none;
+            line-height: 20px;
+            display: inline-block;
+            padding: 0 8px 2px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            -webkit-transition: background 0.2s;
+                    transition: background 0.2s;
+            position: relative
+            						/*TOOLTIP
+            						span {
+            							font-size: 16px;
+            							background: #2c3e50;
+            							color: #ffffff;
+            							padding: 5px 10px;
+            							top: -35px;
+            							position: absolute;
+            							line-height: normal;
+            							left: 50%;
+                						transform: translateX(-50%) translateY(-50%);
+            							border-radius: 3px;
+            							transition: all 0.2s ease-in-out;
+            							opacity: 0;
+            							visibility: hidden;
+            							font-style: normal;
+            							font-weight: normal;
+            							white-space:nowrap;
+            						}
+
+            						&:hover span {
+            							opacity: 1;
+            							visibility: visible;
+            							top: -25px;
+            							color: #ffffff;
+            						}
+
+            						span:after {
+            							content: '';
+            							display: block;
+            							position: absolute;
+            							bottom: -9px;
+            							left: 50%;
+            							margin-left: -10px;
+            							width: 0;
+            							height: 0;
+            							border-style: solid;
+            							border-width: 10px 10px 0 10px;
+            							border-color: #2c3e50 transparent transparent transparent;
+            						}
+            						END TOOLTIP*/ }
+            .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em {
+              position: relative;
+              top: 2px;
+              color: #595a5a;
+              font-size: 20px;
+              line-height: 20px; }
+              .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em.fa-phone {
+                top: 3px; }
+              .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em.DIR-infoOption {
+                margin-right: 5px; }
+            .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a:hover {
+              background: #eeeeee; }
+        .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks .DIR-more a {
+          background: #eeeeee;
+          color: #333333;
+          text-decoration: none;
+          line-height: 30px;
+          display: inline-block;
+          float: right;
+          padding: 0 15px;
+          border-radius: 3px;
+          font-weight: bold;
+          font-size: 14px; }
+          .PO-staffDirectory .DIR-card .DIR-cardInfo ul .DIR-quickLinks .DIR-more a.DIR-active {
+            background: #2e353e;
+            color: #ffffff; }
+  .PO-staffDirectory .DIR-slideOut {
+    /*display: none*/
+    /*END CONTACTINFO*/
+    /*END MEDIA*/
+    /*END SECONDARY INFO*/ }
+    .PO-staffDirectory .DIR-slideOut .DIR-contactInfo {
+      margin: 25px 0 0; }
+      .PO-staffDirectory .DIR-slideOut .DIR-contactInfo ul {
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        .PO-staffDirectory .DIR-slideOut .DIR-contactInfo ul:after {
+          content: '';
+          display: block;
+          clear: both; }
+        .PO-staffDirectory .DIR-slideOut .DIR-contactInfo ul li {
+          float: left;
+          width: 50%; }
+      .PO-staffDirectory .DIR-slideOut .DIR-contactInfo .DIR-contactButton {
+        color: #808285;
+        text-decoration: none;
+        line-height: 25px;
+        display: inline-block;
+        padding: 0 8px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        -webkit-transition: all 0.2s;
+                transition: all 0.2s; }
+        .PO-staffDirectory .DIR-slideOut .DIR-contactInfo .DIR-contactButton em {
+          margin-right: 10px;
+          color: #595a5a;
+          font-size: 20px;
+          line-height: 25px; }
+        .PO-staffDirectory .DIR-slideOut .DIR-contactInfo .DIR-contactButton:hover {
+          background: #eeeeee;
+          -webkit-transform: scale(1.1, 1.1);
+              -ms-transform: scale(1.1, 1.1);
+                  transform: scale(1.1, 1.1); }
+    .PO-staffDirectory .DIR-slideOut .DIR-media {
+      margin: 10px 0;
+      padding: 0 0 10px;
+      border-bottom: 1px solid #dddddd; }
+      .PO-staffDirectory .DIR-slideOut .DIR-media ul {
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        .PO-staffDirectory .DIR-slideOut .DIR-media ul:after {
+          content: '';
+          display: block;
+          clear: both; }
+        .PO-staffDirectory .DIR-slideOut .DIR-media ul li {
+          float: left;
+          margin-right: 10px; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media ul li:last-child {
+            margin: 0; }
+      .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton {
+        color: #333333;
+        text-decoration: none;
+        line-height: 23px;
+        display: inline-block;
+        padding: 3px 8px 2px 30px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+        -webkit-transition: all 0.3s;
+                transition: all 0.3s; }
+        .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span {
+          width: 22px;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          overflow: hidden;
+          border-radius: 3px;
+          -webkit-transition: all 0.3s;
+                  transition: all 0.3s; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span.DIR-facebook {
+            background-color: #3b5999; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span.DIR-twitter {
+            background-color: #429cd6; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span.DIR-youtube {
+            background-color: #cd2227; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span.DIR-linkedin {
+            background-color: #0177b5; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span.DIR-googleplus {
+            background-color: #de4b37; }
+          .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span em {
+            margin-right: 10px;
+            height: 22px;
+            width: 150px;
+            color: #ffffff;
+            text-align: left;
+            line-height: 22px;
+            float: left;
+            display: block;
+            font-size: 15px; }
+            .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span em:before {
+              width: 22px;
+              display: inline-block;
+              text-align: center; }
+            .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton > span em span.DIR-mText {
+              font-family: Arial;
+              font-size: 12px;
+              font-weight: bold;
+              color: #ffffff;
+              position: relative;
+              top: -1px;
+              left: 5px; }
+        .PO-staffDirectory .DIR-slideOut .DIR-media .DIR-mediaButton:hover > span {
+          width: calc(100% - 6px ); }
+    .PO-staffDirectory .DIR-slideOut .DIR-secondaryInfo {
+      margin: 0 0 20px;
+      border-bottom: 1px solid #dddddd; }
+      .PO-staffDirectory .DIR-slideOut .DIR-secondaryInfo ul {
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        .PO-staffDirectory .DIR-slideOut .DIR-secondaryInfo ul:after {
+          content: '';
+          display: block;
+          clear: both; }
+        .PO-staffDirectory .DIR-slideOut .DIR-secondaryInfo ul li {
+          float: left;
+          width: 50%;
+          color: #808285;
+          margin-bottom: 10px; }
+          .PO-staffDirectory .DIR-slideOut .DIR-secondaryInfo ul li span {
+            color: #595a5a;
+            font-weight: bold; }
+    .PO-staffDirectory .DIR-slideOut .DIR-message .DIR-mTitle {
+      font-weight: bold;
+      color: #595a5a; }
+    .PO-staffDirectory .DIR-slideOut .DIR-message .DIR-mContent {
+      line-height: 1.4em;
+      color: #808285; }
+      .PO-staffDirectory .DIR-slideOut .DIR-message .DIR-mContent:after {
+        content: '';
+        display: block;
+        clear: both; }
+  .PO-staffDirectory.PO-mobileView .DIR-card .DIR-photo {
+    width: 60px; }
+    .PO-staffDirectory.PO-mobileView .DIR-card .DIR-photo span {
+      display: none; }
+    .PO-staffDirectory.PO-mobileView .DIR-card .DIR-photo em {
+      display: block;
+      line-height: 50px;
+      width: 50px;
+      font-size: 20px; }
+  .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-name {
+    font-size: 20px;
+    margin-bottom: 2px; }
+  .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-title {
+    font-size: 14px;
+    margin-bottom: 4px; }
+  .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-groups {
+    font-size: 12px; }
+  .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks {
+    margin-top: 5px; }
+    .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li {
+      line-height: 20px;
+      vertical-align: middle; }
+      .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li span {
+        position: fixed;
+        top: -10000px;
+        left: -10000px; }
+      .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a {
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px 2px;
+        border-radius: 3px;
+        margin-bottom: 5px; }
+        .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em {
+          top: 2px;
+          font-size: 20px;
+          line-height: 20px; }
+          .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em.fa-phone {
+            top: 3px; }
+          .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a em.DIR-infoOption {
+            margin-right: 0; }
+    .PO-staffDirectory.PO-mobileView .DIR-card .DIR-cardInfo ul .DIR-quickLinks .DIR-more a {
+      line-height: 30px;
+      padding: 0 10px;
+      font-size: 14px; }
+
+.PO-search {
+  background: transparent;
+  padding: 0;
+  margin: 0; }
+  .PO-search .DIR-sGroups {
+    position: relative;
+    float: left;
+    width: auto;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1; }
+  .PO-search .nav-right {
+    position: relative;
+    float: right;
+    width: auto;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1; }
+  .PO-search .nav-fill {
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap; }
+  .PO-search .nav-icon {
+    background-repeat: no-repeat; }
+  .PO-search .DIR-sGroup {
+    position: relative;
+    float: left;
+    height: 37px;
+    margin: 0;
+    overflow: hidden;
+    background-color: #eeeeee; }
+    .PO-search .DIR-sGroup .DIR-sGroupSelect {
+      position: absolute;
+      display: block;
+      top: -1px;
+      left: 0;
+      height: 37px;
+      width: auto;
+      outline: 0;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      visibility: visible;
+      border: 0;
+      line-height: 37px; }
+    .PO-search .DIR-sGroup .DIR-sGroupFName .DIR-sGFN {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      color: #595a5a;
+      font-size: 14px;
+      line-height: 37px;
+      margin-right: 30px;
+      margin-left: 10px;
+      min-width: 60px;
+      text-align: center; }
+    .PO-search .DIR-sGroup .DIR-sGroupFName em {
+      position: absolute;
+      top: 0px;
+      right: 8px;
+      line-height: 37px; }
+  .PO-search .DIR-sSubmit {
+    position: relative;
+    top: 0;
+    right: 0;
+    height: 37px;
+    width: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #eeeeee; }
+    .PO-search .DIR-sSubmit .DIR-sSubmitText {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: #595a5a;
+      font-size: 14px;
+      line-height: 13px;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 35px;
+      width: 100%; }
+    .PO-search .DIR-sSubmit .DIR-sGhostSubmit {
+      position: relative;
+      display: block;
+      height: 100%;
+      width: 100%;
+      font-size: 14px;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      outline: 0;
+      color: #595a5a;
+      background: 0 0;
+      border: none;
+      text-indent: -1000px;
+      line-height: 1px; }
+  .PO-search .DIR-sTextInput {
+    position: relative;
+    height: 37px;
+    background: #fff;
+    width: calc(100% - 100px);
+    float: left; }
+    .PO-search .DIR-sTextInput input[type=text] {
+      border: 1px solid #eeeeee;
+      border-width: 1px 0 1px 0;
+      border-radius: 0;
+      padding: 0 10px;
+      line-height: 35px; }
+    .PO-search .DIR-sTextInput input[type=text]:focus {
+      box-shadow: 0 0 2px 2px rgba(228, 121, 17, 0.5) !important; }
+
+.PO-staffDirectory.DIR-hidden .DIR-card > * {
+  vertical-align: middle; }
+.PO-staffDirectory.DIR-hidden .DIR-card .DIR-cardInfo ul .DIR-quickLinks {
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+  height: 38px;
+  overflow: hidden;
+  display: block !important;
+  visibility: visible;
+  opacity: 1; }
+.PO-staffDirectory.DIR-hidden .DIR-card .DIR-cardInfo ul .DIR-name, .PO-staffDirectory.DIR-hidden .DIR-card .DIR-cardInfo ul .DIR-title, .PO-staffDirectory.DIR-hidden .DIR-card .DIR-cardInfo ul .DIR-groups {
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s; }
+.PO-staffDirectory.DIR-hidden .DIR-card.DIR-active .DIR-cardInfo ul .DIR-name {
+  font-size: 35px; }
+.PO-staffDirectory.DIR-hidden .DIR-card.DIR-active .DIR-cardInfo ul .DIR-title {
+  margin-bottom: 5px;
+  font-size: 18px; }
+.PO-staffDirectory.DIR-hidden .DIR-card.DIR-active .DIR-cardInfo ul .DIR-groups {
+  font-size: 14px; }
+.PO-staffDirectory.DIR-hidden .DIR-card.DIR-active .DIR-cardInfo ul .DIR-quickLinks {
+  height: 0px;
+  visibility: hidden;
+  opacity: 0; }
+.PO-staffDirectory.DIR-hidden .DIR-more a {
+  background: #eeeeee;
+  color: #333333;
+  text-decoration: none;
+  line-height: 30px;
+  display: inline-block;
+  float: right;
+  padding: 0 15px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 14px; }
+  .PO-staffDirectory.DIR-hidden .DIR-more a.DIR-active {
+    background: #2e353e;
+    color: #ffffff; }
+
+.PO-staffDirectory.DIR-toolTip .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a span {
+  font-size: 16px;
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 5px 10px;
+  top: -35px;
+  position: absolute;
+  line-height: normal;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  font-style: normal;
+  font-weight: normal;
+  white-space: nowrap; }
+.PO-staffDirectory.DIR-toolTip .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a:hover span {
+  opacity: 1;
+  visibility: visible;
+  top: -25px;
+  color: #ffffff; }
+.PO-staffDirectory.DIR-toolTip .DIR-card .DIR-cardInfo ul .DIR-quickLinks li a span:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #2c3e50 transparent transparent transparent; }
