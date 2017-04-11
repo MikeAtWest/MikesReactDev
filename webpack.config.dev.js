@@ -11,6 +11,7 @@ export default {
     'news': ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', path.resolve(__dirname, 'src/components/news/newsPage')],
     'staffDirectorySearch': ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', path.resolve(__dirname, 'src/components/staffDirectorySearch/demoPage/staffDirectorySearchPage')],
     'paginator': ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', path.resolve(__dirname, 'src/components/common/paginator/demoPage/paginatorPage')],
+    'monster': ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', path.resolve(__dirname, 'src/components/Monster/demoPage/monsterPage')],
     'multiple': ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', path.resolve(__dirname, 'src/components/multiple/multiplePage')]
   },
 
@@ -61,6 +62,12 @@ export default {
       chunks: ['paginator'],
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      template: 'src/components/Monster/demoPage/monsterPage.html',
+      filename: 'monsterPage.html',
+      chunks: ['monster'],
+      inject: true
+    }),    
     new HtmlWebpackPlugin({
       template: 'src/components/multiple/multiplePage.html',
       filename: 'multiplePage.html',

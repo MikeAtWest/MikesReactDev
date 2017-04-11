@@ -12,7 +12,8 @@
      */
     "curly": true,
     "max-line-length": false,
-    "class-name": false
+    "class-name": false,
+    "variable-name": false
   },
   "jsRules": {
     /*

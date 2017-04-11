@@ -1,0 +1,92 @@
+div.main {
+    float: left;
+    margin-right: 30px;
+    font-family: Verdana;  
+}
+
+div.monster {
+    max-width: 600px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-color: #7a4d01;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+div.monster div.intro div.name {
+    font-size: 1.75em;
+    color: #7a4d01;
+    font-variant: small-caps;
+}
+
+div.monster div.intro div.details {
+    font-style: italic;
+}
+
+div.monster hr {
+    height: 2px;
+    background-color: #7a4d01;
+    clear: both;
+}
+
+div.monster div.section .line span {
+    color: #7a4d01;
+    font-weight: bold;
+}
+
+div.monster div.stats div {
+    float: left;
+}
+
+div.monster div.stats div div {
+    float: left;
+    width: 6em;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+div.monster div.stats div span {
+    font-weight: bold;
+}
+
+div.monster div.traits div {
+    margin-top: 15px;
+}
+div.monster div.traits div span {
+    font-weight: bold;
+    font-style: italic;
+}
+
+div.monster div.actionsTitle {
+    margin-top: 15px;    
+    font-size: 1.2em;
+    color: #7a4d01;
+    font-variant: small-caps;
+    border-bottom: 2px solid #7a4d01;
+}
+
+div.monster div.attacks .line {
+    margin-top: 8px;
+}
+
+div.monster div.attacks .line span:first-of-type {
+    font-weight: bold;
+}
+
+div.monster div.attacks .line span {
+    font-style: italic;
+}
+
+div.footnotes  {
+    margin-top: 5px;
+    margin-left: 4px;
+}
+
+div.footnotes div {
+    font-size: 0.75em;
+}
