@@ -4,6 +4,7 @@ export interface IArmorList {
     acBonus: number;
     maxDexBonus: number;
     armorsDesc: string;
+    armors: Armor[];
     addArmor(armor: Armor): void;
 }
 
@@ -40,6 +41,10 @@ export class ArmorList implements IArmorList {
             }
         });
         return maxDexBonus;
+    }
+
+    public get armors() {
+        return this._armors;
     }
 
     private updateArmorDesc(): void {

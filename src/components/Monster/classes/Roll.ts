@@ -21,7 +21,7 @@ export class Roll implements IRoll {
         desc = this.numberOfDice.toString() + "d" + this.dieSize.toString();
         if (this.modifier !== 0) {
             if (this.modifier > 0) { desc += " + " + this.modifier; }
-            if (this.modifier < 0) { desc += " 1 " + Math.abs(this.modifier); }
+            if (this.modifier < 0) { desc += " - " + Math.abs(this.modifier); }
         }
         return desc;
     }

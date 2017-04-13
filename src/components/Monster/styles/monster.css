@@ -85,8 +85,17 @@ div.monster div.attacks .line span {
 div.footnotes  {
     margin-top: 5px;
     margin-left: 4px;
+    margin-bottom: 10px; 
+    max-width: 600px;       
 }
 
 div.footnotes div {
     font-size: 0.75em;
+    padding-left: 10px;
+    text-indent: -10px;
+    color: darkgray;
+}
+
+div.footnotes div span {
+    color: gray;
 }

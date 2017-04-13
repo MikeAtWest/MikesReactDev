@@ -1,4 +1,16 @@
-export class CREntry {
+export interface ICREntry {
+    cr: string;
+    profBonus: number;
+    ac: number;
+    minHp: number;
+    maxHp: number;
+    attackBonus: number;
+    minDPR: number;
+    maxDPR: number;
+    saveDC: number;
+}
+
+export class CREntry implements ICREntry {
     public cr: string;
     public profBonus: number;
     public ac: number;

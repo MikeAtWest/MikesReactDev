@@ -55,6 +55,15 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
           <hr />
           <div className="section">
             <div className="line"><span>Skills</span> Intimidation +2</div>
+            {this.props.monster.resistances.resistances.length > 0 &&
+              <div className="line"><span>Damage Resistances</span> {this.props.monster.resistances.names}</div>
+            }
+            {this.props.monster.immunities.immunities.length > 0 &&
+              <div className="line"><span>Damage Immunities</span> {this.props.monster.immunities.names}</div>
+            }
+             {this.props.monster.vulnerabilities.vulnerabilities.length > 0 &&
+              <div className="line"><span>Damage Vulnerabilities</span> {this.props.monster.vulnerabilities.names}</div>
+            }            
             <div className="line"><span>Senses</span> darkvision 60 ft., passive Perception 10</div>
             <div className="line"><span>Languages</span> Common, Orc</div>
             <div className="line"><span>Challenge</span> 1/2 (100 XP)</div>
@@ -70,7 +79,10 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
           </div>
         </div>
         <div className="footnotes">
-            <div>Expected Challenge Rating: {this.props.monster.expectedCR}</div>
+          <div><span>Expected Challenge Rating:</span> {this.props.monster.expectedCR.cr}</div>
+          <div><span>Proficiency bonus:</span> +{this.props.monster.expectedCR.profBonus}</div>
+          <div><span>Full AC:</span> {this.props.monster.fullAC}</div>
+          <div><span>Effective HP:</span> {this.props.monster.effectiveHitPointsNote} = {this.props.monster.effectiveHitPoints} </div>
         </div>
       </div>
     );
