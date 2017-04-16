@@ -9,6 +9,7 @@ export interface IAbilityScores {
     INT: IAbilityScore;
     WIS: IAbilityScore;
     CHA: IAbilityScore;
+    getAbilityScore(AbilityScoreAbbrev): AbilityScore;
 }
 
 export class AbilityScores implements IAbilityScores {
@@ -26,5 +27,17 @@ export class AbilityScores implements IAbilityScores {
         this.INT = new AbilityScore(AbilityScoreAbbrev.INT, int);
         this.WIS = new AbilityScore(AbilityScoreAbbrev.WIS, wis);
         this.CHA = new AbilityScore(AbilityScoreAbbrev.CHA, cha);
+    }
+
+    public getAbilityScore(ability: AbilityScoreAbbrev): AbilityScore {
+        switch (ability) {
+            case AbilityScoreAbbrev.STR: { return this.STR; }
+            case AbilityScoreAbbrev.DEX: { return this.DEX; }
+            case AbilityScoreAbbrev.CON: { return this.CON; }
+            case AbilityScoreAbbrev.INT: { return this.INT; }
+            case AbilityScoreAbbrev.WIS: { return this.WIS; }
+            case AbilityScoreAbbrev.CHA: { return this.CHA; }
+            default: return null;
+        }
     }
 }

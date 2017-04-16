@@ -8,6 +8,10 @@ import { IRoll, Roll } from "./classes/Roll";
 import { alignmentDesc } from "./classes/utilities";
 
 import M_AbilityScores from "./M_AbilityScores";
+import M_Actions from "./M_Actions";
+import M_CompleteActions from "./M_CompleteActions";
+import M_SavingThrows from "./M_SavingThrows";
+import M_Skills from "./M_Skills";
 
 export interface IStandardDisplayProps extends React.Props<M_StandardDisplay> {
   monster: IMonster;
@@ -54,33 +58,46 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
 
           <hr />
           <div className="section">
-            <div className="line"><span>Skills</span> Intimidation +2</div>
+
+            <M_SavingThrows savingThrows={this.props.monster.completeSavingThrows} />
+
+            <M_Skills skills={this.props.monster.completeSkills} />
+
             {this.props.monster.resistances.resistances.length > 0 &&
               <div className="line"><span>Damage Resistances</span> {this.props.monster.resistances.names}</div>
             }
             {this.props.monster.immunities.immunities.length > 0 &&
               <div className="line"><span>Damage Immunities</span> {this.props.monster.immunities.names}</div>
             }
-             {this.props.monster.vulnerabilities.vulnerabilities.length > 0 &&
+            {this.props.monster.vulnerabilities.vulnerabilities.length > 0 &&
               <div className="line"><span>Damage Vulnerabilities</span> {this.props.monster.vulnerabilities.names}</div>
-            }            
+            }
             <div className="line"><span>Senses</span> darkvision 60 ft., passive Perception 10</div>
             <div className="line"><span>Languages</span> Common, Orc</div>
-            <div className="line"><span>Challenge</span> 1/2 (100 XP)</div>
+            <div className="line"><span>Challenge</span> {this.props.monster.expectedCR.cr} (100) XP)</div>
           </div>
           <hr />
           <div className="traits">
             <div><span>Aggressive.</span> As a bonus action, the orc can move up to its speed toward a hostile creature that it can see.</div>
           </div>
-          <div className="actionsTitle">Actions</div>
+
+          <M_CompleteActions completeActions={this.props.monster.completeActions} />
+
+          {/*<div className="actionsTitle">Static Actions</div>
           <div className="attacks">
             <div className="line"><span>Greataxe.</span> <span>Melee Weapon Attack:</span> +5 to hit, reach 5 ft., one target. <span>Hit:</span> 9 (1d12 + 3) slashing damage.</div>
             <div className="line"><span>Javelin.</span> <span>Melee or Ranged Weapon Attack:</span> +5 to hit, reach 5 ft. or range 30/120 ft., one target. <span>Hit:</span> 6 (1d6 + 3) piercing damage.</div>
-          </div>
+          </div>*/}
         </div>
         <div className="footnotes">
           <div><span>Expected Challenge Rating:</span> {this.props.monster.expectedCR.cr}</div>
           <div><span>Proficiency bonus:</span> +{this.props.monster.expectedCR.profBonus}</div>
+          <div><span>Expected AC:</span> {this.props.monster.expectedCR.ac}</div>
+          <div><span>Expected HP:</span> {this.props.monster.expectedCR.minHp}-{this.props.monster.expectedCR.maxHp}</div>
+          <div><span>Expected attack bonus:</span> {this.props.monster.expectedCR.attackBonus}</div>
+          <div><span>Expected damage/round:</span> {this.props.monster.expectedCR.minDPR}-{this.props.monster.expectedCR.maxDPR}</div>
+          <div><span>Expected save DC:</span> {this.props.monster.expectedCR.saveDC}</div>
+
           <div><span>Full AC:</span> {this.props.monster.fullAC}</div>
           <div><span>Effective HP:</span> {this.props.monster.effectiveHitPointsNote} = {this.props.monster.effectiveHitPoints} </div>
         </div>

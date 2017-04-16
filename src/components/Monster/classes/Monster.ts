@@ -1,10 +1,16 @@
 import { AbilityScores, IAbilityScores } from "./AbilityScores";
+import { ActionList, IActionList } from "./ActionList";
 import { ArmorList, IArmorList } from "./ArmorList";
+import { CompleteAction, ICompleteAction } from "./CompleteAction";
+import { CompleteSavingThrows, ICompleteSavingThrows } from "./CompleteSavingThrows";
+import { CompleteSkill, ICompleteSkill } from "./CompleteSkill";
 import { CREntry, ICREntry } from "./CREntry";
 import { HitDice, IHitDice } from "./HitDice";
 import { IImmunityList, ImmunityList } from "./ImmunityList";
 import { IResistanceList, ResistanceList } from "./ResistanceList";
 import { IRoll, Roll } from "./Roll";
+import { ISavingThrows, SavingThrows } from "./SavingThrows";
+import { ISkill, Skill } from "./Skill";
 import { ISpeedList, SpeedList } from "./SpeedList";
 import { IVulnerabilityList, VulnerabilityList } from "./VulnerabilityList";
 
@@ -21,6 +27,8 @@ export interface IMonster {
     hpRoll: IRoll;
     speeds: ISpeedList;
     abilityScores: IAbilityScores;
+    savingThrows: ISavingThrows;
+    skills: ISkill[];
     expectedCR: ICREntry;
     hitDice: IHitDice;
     ac: number;
@@ -28,10 +36,17 @@ export interface IMonster {
     resistances: IResistanceList;
     immunities: IImmunityList;
     vulnerabilities: IVulnerabilityList;
+    actions: IActionList;
     hitPointMultiplier: number;
     hitPointMultiplierNote: string;
     effectiveHitPoints: number;
     effectiveHitPointsNote: string;
+    completeActions: ICompleteAction[];
+    completeSkills: ICompleteSkill[];
+    completeSavingThrows: ICompleteSavingThrows;
+    processCompleteActions(): void;
+    processCompleteSkills(): void;
+    processCompleteSavingThrows(): void;
 }
 
 export class Monster implements IMonster {
@@ -43,13 +58,19 @@ export class Monster implements IMonster {
     public armorList = new ArmorList();
     public speeds = new SpeedList();
     public abilityScores = new AbilityScores(10, 10, 10, 10, 10, 10);
+    public savingThrows = new SavingThrows(false, false, false, false, false, false);
+    public skills: Skill[] = [];
     public expectedCR: ICREntry = null;
     public hitDice: HitDice = null;
     public resistances: ResistanceList = new ResistanceList();
     public immunities: ImmunityList = new ImmunityList();
     public vulnerabilities: VulnerabilityList = new VulnerabilityList();
+    public actions: ActionList = new ActionList();
     public hitPointMultiplier: number = 1;
     public hitPointMultiplierNote: string = "";
+    public completeActions: CompleteAction[] = [];
+    public completeSkills: CompleteSkill[] = [];
+    public completeSavingThrows: ICompleteSavingThrows = null;
 
     public get hp(): number {
         return Math.floor(this.hitDice.hp + (this.abilityScores.CON.modifier * this.hitDice.numberDice));
@@ -82,6 +103,58 @@ export class Monster implements IMonster {
     public get effectiveHitPoints(): number {
         const effHp = this.hp * this.getResistanceMultiplier() * this.getImmunityMultiplier() * this.getVulnerabilityMultiplier() * this.hitPointMultiplier;
         return Math.floor(effHp);
+    }
+
+    public get effectiveHitPointsNote(): string {
+        const resistanceMultiplier = this.getResistanceMultiplier();
+        const immunityMultiplier = this.getImmunityMultiplier();
+        const vulnerabilityMultiplier = this.getVulnerabilityMultiplier();
+
+        let desc = this.hp + " (hp)";
+        if (resistanceMultiplier !== 1) {
+            desc += " x " + resistanceMultiplier + " (" + this.resistances.resistanceCount + " resistances at expected CR " + this.expectedCR.cr + ")";
+        }
+        if (immunityMultiplier !== 1) {
+            desc += " x " + immunityMultiplier + " (" + this.immunities.immunityCount + " immunities at expected CR " + this.expectedCR.cr + ")";
+        }
+        if (vulnerabilityMultiplier !== 1) {
+            desc += " x " + vulnerabilityMultiplier + " (" + this.vulnerabilities.vulnerabilityCount + " vulnerabilities)";
+        }
+        if (this.hitPointMultiplier !== 1) {
+            desc += " x " + this.hitPointMultiplier + " (" + this.hitPointMultiplierNote + ")";
+        }
+        return desc;
+    }
+
+    public processCompleteActions(): void {
+        this.completeActions = [];
+
+        for (const action of this.actions.actions) {
+            const completeAction = new CompleteAction(action, this);
+            this.completeActions.push(completeAction);
+        }
+    }
+
+    public processCompleteSkills(): void {
+        this.completeSkills = [];
+
+        for (const skill of this.skills) {
+            const completeSkill = new CompleteSkill(skill.skillName, this);
+            this.completeSkills.push(completeSkill);
+        }
+
+        this.completeSkills.sort((a, b) => {
+            if (a.name < b.name) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+    }
+
+    public processCompleteSavingThrows(): void {
+        this.completeSavingThrows = new CompleteSavingThrows(this.savingThrows, this);
+        this.completeSavingThrows.processSavingThrows();
     }
 
     private getResistanceMultiplier(): number {
@@ -128,26 +201,5 @@ export class Monster implements IMonster {
             vulnerabilityMultiplier = 0.5;
         }
         return vulnerabilityMultiplier;
-    }
-
-    public get effectiveHitPointsNote(): string {
-        const resistanceMultiplier = this.getResistanceMultiplier();
-        const immunityMultiplier = this.getImmunityMultiplier();
-        const vulnerabilityMultiplier = this.getVulnerabilityMultiplier();
-
-        let desc = this.hp + " (hp)";
-        if (resistanceMultiplier !== 1) {
-            desc += " x " + resistanceMultiplier + " (" + this.resistances.resistanceCount + " resistances at expected CR " + this.expectedCR.cr + ")";
-        }
-        if (immunityMultiplier !== 1) {
-            desc += " x " + immunityMultiplier + " (" + this.immunities.immunityCount + " immunities at expected CR " + this.expectedCR.cr + ")";
-        }
-        if (vulnerabilityMultiplier !== 1) {
-            desc += " x " + vulnerabilityMultiplier + " (" + this.vulnerabilities.vulnerabilityCount + " vulnerabilities)";
-        }
-        if (this.hitPointMultiplier !== 1) {
-            desc += " x " + this.hitPointMultiplier + " (" + this.hitPointMultiplierNote + ")";
-        }
-        return desc;
     }
 };

@@ -3,6 +3,7 @@ export interface IRoll {
     dieSize: number;
     modifier: number;
     desc: string;
+    average: number;
 }
 
 export class Roll implements IRoll {
@@ -24,5 +25,10 @@ export class Roll implements IRoll {
             if (this.modifier < 0) { desc += " - " + Math.abs(this.modifier); }
         }
         return desc;
+    }
+
+    public get average(): number {
+        const avDieRoll = (this.dieSize * 0.5) + 0.5;
+        return Math.floor((avDieRoll * this.numberOfDice) + this.modifier);
     }
 }

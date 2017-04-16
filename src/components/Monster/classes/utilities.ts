@@ -1,4 +1,4 @@
-import { Alignment } from "./enums";
+import { Alignment, AttackType, Size } from "./enums";
 
 export function alignmentDesc(alignment: Alignment): string {
     switch (alignment) {
@@ -15,3 +15,20 @@ export function alignmentDesc(alignment: Alignment): string {
         default: return "Unknown";
     }
 };
+
+export function attackTypeDesc(attackType: AttackType): string {
+    switch (attackType) {
+        case AttackType.MeleeWeapon: { return "Melee Weapon Attack"; }
+        case AttackType.RangedWeapon: { return "Ranged Weapon Attack"; }
+        case AttackType.MeleeOrRanged: { return "Melee or Ranged Weapon Attack"; }
+        default: return "Unknown Attack Type";
+    }
+}
+
+export function modifierStr(bonus: number): string {
+        if (bonus < 0) {
+            return "-" + Math.abs(bonus).toString();
+        } else {
+            return "+" + bonus.toString();
+        }
+    }

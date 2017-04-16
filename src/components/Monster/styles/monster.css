@@ -34,7 +34,7 @@ div.monster hr {
     clear: both;
 }
 
-div.monster div.section .line span {
+div.monster div.section .line span:first-of-type {
     color: #7a4d01;
     font-weight: bold;
 }
