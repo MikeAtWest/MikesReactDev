@@ -7,11 +7,13 @@ import { CompleteSkill, ICompleteSkill } from "./CompleteSkill";
 import { CREntry, ICREntry } from "./CREntry";
 import { HitDice, IHitDice } from "./HitDice";
 import { IImmunityList, ImmunityList } from "./ImmunityList";
+import { ILanguages, Languages } from "./Languages";
 import { IResistanceList, ResistanceList } from "./ResistanceList";
 import { IRoll, Roll } from "./Roll";
 import { ISavingThrows, SavingThrows } from "./SavingThrows";
 import { ISkill, Skill } from "./Skill";
 import { ISpeedList, SpeedList } from "./SpeedList";
+import { ITrait, Trait } from "./Trait";
 import { IVulnerabilityList, VulnerabilityList } from "./VulnerabilityList";
 
 import { Alignment, Size, Type } from "./enums";
@@ -29,6 +31,7 @@ export interface IMonster {
     abilityScores: IAbilityScores;
     savingThrows: ISavingThrows;
     skills: ISkill[];
+    languages: ILanguages;
     expectedCR: ICREntry;
     hitDice: IHitDice;
     ac: number;
@@ -37,6 +40,7 @@ export interface IMonster {
     immunities: IImmunityList;
     vulnerabilities: IVulnerabilityList;
     actions: IActionList;
+    traits: ITrait[];
     hitPointMultiplier: number;
     hitPointMultiplierNote: string;
     effectiveHitPoints: number;
@@ -60,11 +64,13 @@ export class Monster implements IMonster {
     public abilityScores = new AbilityScores(10, 10, 10, 10, 10, 10);
     public savingThrows = new SavingThrows(false, false, false, false, false, false);
     public skills: Skill[] = [];
+    public languages: Languages = new Languages();
     public expectedCR: ICREntry = null;
     public hitDice: HitDice = null;
     public resistances: ResistanceList = new ResistanceList();
     public immunities: ImmunityList = new ImmunityList();
     public vulnerabilities: VulnerabilityList = new VulnerabilityList();
+    public traits: Trait[] = [];
     public actions: ActionList = new ActionList();
     public hitPointMultiplier: number = 1;
     public hitPointMultiplierNote: string = "";

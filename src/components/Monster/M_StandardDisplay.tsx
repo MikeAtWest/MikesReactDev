@@ -3,6 +3,7 @@ import * as React from "react";
 import { Alignment, Size, Type } from "./classes/enums";
 
 import { Armor, IArmor } from "./classes/Armor";
+import { ILanguages, Languages } from "./classes/Languages";
 import { IMonster, Monster } from "./classes/Monster";
 import { IRoll, Roll } from "./classes/Roll";
 import { alignmentDesc } from "./classes/utilities";
@@ -10,8 +11,10 @@ import { alignmentDesc } from "./classes/utilities";
 import M_AbilityScores from "./M_AbilityScores";
 import M_Actions from "./M_Actions";
 import M_CompleteActions from "./M_CompleteActions";
+import M_Languages from "./M_Languages";
 import M_SavingThrows from "./M_SavingThrows";
 import M_Skills from "./M_Skills";
+import M_Traits from "./M_Traits";
 
 export interface IStandardDisplayProps extends React.Props<M_StandardDisplay> {
   monster: IMonster;
@@ -72,14 +75,16 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
             {this.props.monster.vulnerabilities.vulnerabilities.length > 0 &&
               <div className="line"><span>Damage Vulnerabilities</span> {this.props.monster.vulnerabilities.names}</div>
             }
-            <div className="line"><span>Senses</span> darkvision 60 ft., passive Perception 10</div>
-            <div className="line"><span>Languages</span> Common, Orc</div>
+            <div className="line"><span>Condition Immunities</span> to do...</div>
+            <div className="line"><span>Senses</span> to do...</div>
+
+            <M_Languages languages={this.props.monster.languages} />
+
             <div className="line"><span>Challenge</span> {this.props.monster.expectedCR.cr} (100) XP)</div>
           </div>
           <hr />
-          <div className="traits">
-            <div><span>Aggressive.</span> As a bonus action, the orc can move up to its speed toward a hostile creature that it can see.</div>
-          </div>
+
+          <M_Traits traits={this.props.monster.traits} />
 
           <M_CompleteActions completeActions={this.props.monster.completeActions} />
 

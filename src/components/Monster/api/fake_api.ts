@@ -7,12 +7,14 @@ import { Action, IAction } from "../classes/Action";
 import { CRTable, ICRTable } from "../classes/CRTable";
 import { HitDice } from "../classes/HitDice";
 import { IImmunity, Immunity } from "../classes/Immunity";
+import { ILanguages, Languages } from "../classes/Languages";
 import { IMonster, Monster } from "../classes/Monster";
 import { IResistance, Resistance } from "../classes/Resistance";
 import { IRoll, Roll } from "../classes/Roll";
 import { ISavingThrows, SavingThrows } from "../classes/SavingThrows";
 import { ISkill, Skill } from "../classes/Skill";
 import { ISpeed, Speed } from "../classes/Speed";
+import { ITrait, Trait } from "../classes/Trait";
 import { alignmentDesc } from "../classes/utilities";
 
 export function api_getMonster(monsterID: number): IMonster {
@@ -31,8 +33,10 @@ export function api_getMonster(monsterID: number): IMonster {
         monster.speeds.addSpeed(new Speed("walk", 30));
         monster.abilityScores = new AbilityScores(16, 8, 16, 7, 11, 10);
         monster.skills.push(new Skill(SkillName.Intimidation));
+        monster.languages = new Languages(["Common", "Orc"]);
         monster.expectedCR = crTable.getCREntry("1/2");
         monster.hitDice = new HitDice(monster.size, 2);
+        monster.traits.push(new Trait("Aggressive", "As a bonus action, the orc can move up to its speed toward a hostile creature that it can see."));
         // monster.vulnerabilities.addMultipleVulnerabilities(["cold", "fire"]);
         // monster.hitPointMultiplier = 2;
         // monster.hitPointMultiplierNote = "tougher than average";
@@ -57,11 +61,17 @@ export function api_getMonster(monsterID: number): IMonster {
         monster.speeds.addSpeed(new Speed("walk", 40));
         monster.abilityScores = new AbilityScores(18, 20, 20, 18, 16, 20);
         monster.savingThrows = new SavingThrows(true, false, true, false, true, true);
+        monster.languages = new Languages(["Abyssal"], true, 120);
         monster.expectedCR = crTable.getCREntry("16");
         monster.hitDice = new HitDice(monster.size, 18);
         monster.resistances.addMultipleResistances(["cold", "fire", "lightning"]);
         monster.resistances.addResistance(new Resistance("bludgeoning, piercing, and slashing from nonmagical weapons", 3, true));
         monster.immunities.addImmunity(new Immunity("poison"));
+
+        monster.traits.push(new Trait("Magic Resistance", "The marilith has advantage on saving throws against spells and other magical effects."));
+        monster.traits.push(new Trait("Magic Weapons", "The marilith's weapon attacks are magical."));
+        monster.traits.push(new Trait("Reactive", "The marilith can take one reaction on every turn in a combat."));
+
         monster.actions.addAction(new Action("Longsword", AttackType.MeleeWeapon, new Roll(2, 8, 0), DamageType.Slashing));
 
         const tail = new Action("Tail", AttackType.MeleeWeapon, new Roll(2, 10, 0), DamageType.Bludgeoning);
@@ -78,6 +88,7 @@ export function api_getMonster(monsterID: number): IMonster {
         monster.speeds.addSpeed(new Speed("walk", 40));
         monster.abilityScores = new AbilityScores(5, 17, 10, 7, 10, 10);
         monster.skills.push(new Skill(SkillName.Stealth));
+        monster.languages = new Languages(["Abyssal", "Common"], false, 0, true);
         monster.expectedCR = crTable.getCREntry("1/2");
         monster.hitDice = new HitDice(monster.size, 3);
         monster.resistances.addMultipleResistances(["cold", "fire", "lightning"]);
@@ -98,6 +109,7 @@ export function api_getMonster(monsterID: number): IMonster {
         monster.alignment = Alignment.Neutral;
         monster.speeds.addSpeed(new Speed("walk", 30));
         monster.abilityScores = new AbilityScores(19, 9, 18, 6, 10, 5);
+        monster.languages = new Languages(["Languages of creator"], false, 0, true);
         monster.expectedCR = crTable.getCREntry("5");
         monster.hitDice = new HitDice(monster.size, 11);
         monster.immunities.addMultipleImmunities(["lightning", "poison"]);
@@ -115,6 +127,7 @@ export function api_getMonster(monsterID: number): IMonster {
         monster.armorList.addArmor(new Armor("shield", 2, null));
         monster.speeds.addSpeed(new Speed("walk", 30));
         monster.abilityScores = new AbilityScores(14, 12, 11, 6, 10, 7);
+        // monster.languages = new Languages(["Gnoll"]);
         monster.expectedCR = crTable.getCREntry("1/2");
         monster.hitDice = new HitDice(monster.size, 5);
         monster.actions.addAction(new Action("Bite", AttackType.MeleeWeapon, new Roll(1, 4, 0), DamageType.Piercing));
