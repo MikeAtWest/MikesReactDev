@@ -1,4 +1,4 @@
-import * as React from "react";
+/*import * as React from "react";
 
 import { ITrait, Trait } from "./classes/Trait";
 
@@ -27,4 +27,4 @@ export default class M_Traits extends React.Component<ITraitsProps, {}> {
       </div >
     );
   }
-}
+}*/

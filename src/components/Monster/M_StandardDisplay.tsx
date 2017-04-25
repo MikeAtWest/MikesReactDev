@@ -5,16 +5,13 @@ import { Alignment, Size, Type } from "./classes/enums";
 import { Armor, IArmor } from "./classes/Armor";
 import { ILanguages, Languages } from "./classes/Languages";
 import { IMonster, Monster } from "./classes/Monster";
-import { IRoll, Roll } from "./classes/Roll";
 import { alignmentDesc } from "./classes/utilities";
 
 import M_AbilityScores from "./M_AbilityScores";
-import M_Actions from "./M_Actions";
-import M_CompleteActions from "./M_CompleteActions";
+import M_Features from "./M_Features";
 import M_Languages from "./M_Languages";
 import M_SavingThrows from "./M_SavingThrows";
 import M_Skills from "./M_Skills";
-import M_Traits from "./M_Traits";
 
 export interface IStandardDisplayProps extends React.Props<M_StandardDisplay> {
   monster: IMonster;
@@ -80,13 +77,17 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
 
             <M_Languages languages={this.props.monster.languages} />
 
-            <div className="line"><span>Challenge</span> {this.props.monster.expectedCR.cr} (100) XP)</div>
+            <div className="line"><span>Challenge</span> {this.props.monster.expectedCR.cr} (100 XP)</div>
           </div>
           <hr />
 
-          <M_Traits traits={this.props.monster.traits} />
+          {/*<M_Traits traits={this.props.monster.traits} />*/}
 
-          <M_CompleteActions completeActions={this.props.monster.completeActions} />
+          {/*<M_CompleteActions completeActions={this.props.monster.completeActions} />
+
+          <M_Reactions reactions={this.props.monster.reactions} />*/}
+
+          <M_Features features={this.props.monster.features} legendaryActionsIntro={this.props.monster.legendaryActionsIntro} />
 
           {/*<div className="actionsTitle">Static Actions</div>
           <div className="attacks">
@@ -105,6 +106,7 @@ export default class M_StandardDisplay extends React.Component<IStandardDisplayP
 
           <div><span>Full AC:</span> {this.props.monster.fullAC}</div>
           <div><span>Effective HP:</span> {this.props.monster.effectiveHitPointsNote} = {this.props.monster.effectiveHitPoints} </div>
+          <div><span>CR Notes:</span> {this.props.monster.challengeRatingNote} </div>
         </div>
       </div>
     );

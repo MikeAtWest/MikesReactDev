@@ -11,6 +11,7 @@ export interface ICREntry {
 }
 
 export class CREntry implements ICREntry {
+    public rank: number;
     public cr: string;
     public profBonus: number;
     public ac: number;
@@ -21,7 +22,8 @@ export class CREntry implements ICREntry {
     public maxDPR: number;
     public saveDC: number;
 
-    constructor(cr: string, profBonus: number, ac: number, minHp: number, maxHp: number, attackBonus: number, minDPR: number, maxDPR: number, saveDC: number) {
+    constructor(rank: number, cr: string, profBonus: number, ac: number, minHp: number, maxHp: number, attackBonus: number, minDPR: number, maxDPR: number, saveDC: number) {
+        this.rank = rank;
         this.cr = cr;
         this.profBonus = profBonus;
         this.ac = ac;

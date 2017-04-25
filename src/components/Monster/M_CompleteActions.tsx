@@ -1,4 +1,4 @@
-import * as React from "react";
+/*import * as React from "react";
 
 import { IAbilityScores } from "./classes/AbilityScores";
 import { CompleteAction, ICompleteAction } from "./classes/CompleteAction";
@@ -37,4 +37,4 @@ export default class M_CompleteActions extends React.Component<ICompleteActionsP
       </div >
     );
   }
-}
+}*/

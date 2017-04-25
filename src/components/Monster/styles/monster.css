@@ -82,6 +82,25 @@ div.monster div.attacks .line span {
     font-style: italic;
 }
 
+
+div.monster div.featuresTitle {
+    margin-top: 15px;    
+    font-size: 1.2em;
+    color: #7a4d01;
+    font-variant: small-caps;
+    border-bottom: 2px solid #7a4d01;
+}
+
+div.monster div.features .line {
+    margin-top: 8px;
+}
+
+div.monster div.features .line span:first-of-type {
+    font-weight: bold;
+    font-style: italic;
+}
+
+
 div.footnotes  {
     margin-top: 5px;
     margin-left: 4px;
@@ -98,4 +117,10 @@ div.footnotes div {
 
 div.footnotes div span {
     color: gray;
+}
+
+div.spells {
+    margin-top: 5px;
+    padding-left: 20px;
+    text-indent: -20px;
 }

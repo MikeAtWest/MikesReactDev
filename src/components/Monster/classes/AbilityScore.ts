@@ -5,6 +5,7 @@ export interface IAbilityScore {
     score: number;
     modifier: number;
     modifierStr: string;
+    fullName: string;
 }
 
 export class AbilityScore implements IAbilityScore {
@@ -27,4 +28,16 @@ export class AbilityScore implements IAbilityScore {
             return "+" + this.modifier.toString();
         }
     }
+
+    get fullName(): string {
+        switch (this.abbrev) {
+            case AbilityScoreAbbrev.STR: { return "Strength"; }
+            case AbilityScoreAbbrev.DEX: { return "Dexterity"; }
+            case AbilityScoreAbbrev.CON: { return "Constitution"; }
+            case AbilityScoreAbbrev.INT: { return "Intelligence"; }
+            case AbilityScoreAbbrev.WIS: { return "Wisdom"; }
+            case AbilityScoreAbbrev.CHA: { return "Charisma"; }
+            default: return "?";
+        }
+    }    
 }

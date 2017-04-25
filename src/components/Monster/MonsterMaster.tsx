@@ -23,7 +23,6 @@ export default class MonsterMaster extends React.Component<IMonsterMasterProps, 
 
     const monster = api_getMonster(this.props.monsterID);
 
-    monster.processCompleteActions();
     monster.processCompleteSkills();
     monster.processCompleteSavingThrows();
 

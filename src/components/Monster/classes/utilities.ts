@@ -1,4 +1,4 @@
-import { Alignment, AttackType, Size } from "./enums";
+import { AbilityScoreAbbrev, Alignment, AttackType, Size } from "./enums";
 
 export function alignmentDesc(alignment: Alignment): string {
     switch (alignment) {
@@ -26,9 +26,30 @@ export function attackTypeDesc(attackType: AttackType): string {
 }
 
 export function modifierStr(bonus: number): string {
-        if (bonus < 0) {
-            return "-" + Math.abs(bonus).toString();
-        } else {
-            return "+" + bonus.toString();
-        }
+    if (bonus < 0) {
+        return "-" + Math.abs(bonus).toString();
+    } else {
+        return "+" + bonus.toString();
     }
+}
+
+export function abilityScoreName(abbrev: AbilityScoreAbbrev): string {
+    switch (abbrev) {
+        case AbilityScoreAbbrev.STR: { return "Strength"; }
+        case AbilityScoreAbbrev.DEX: { return "Dexterity"; }
+        case AbilityScoreAbbrev.CON: { return "Constitution"; }
+        case AbilityScoreAbbrev.INT: { return "Intelligence"; }
+        case AbilityScoreAbbrev.WIS: { return "Wisdom"; }
+        case AbilityScoreAbbrev.CHA: { return "Charisma"; }
+        default: return "?";
+    }
+}
+
+export function numSuffix(num: number): string {
+    const absNum = Math.abs(num);
+    const lastNum = parseInt(absNum.toString().substring(-1));
+    if (num === 1) { return num + "st"; }
+    if (num === 2) { return num + "nd"; }
+    if (num === 3) { return num + "rd"; }
+    return num + "th"; 
+}

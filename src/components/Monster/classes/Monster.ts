@@ -1,32 +1,34 @@
 import { AbilityScores, IAbilityScores } from "./AbilityScores";
-import { ActionList, IActionList } from "./ActionList";
 import { ArmorList, IArmorList } from "./ArmorList";
-import { CompleteAction, ICompleteAction } from "./CompleteAction";
 import { CompleteSavingThrows, ICompleteSavingThrows } from "./CompleteSavingThrows";
 import { CompleteSkill, ICompleteSkill } from "./CompleteSkill";
 import { CREntry, ICREntry } from "./CREntry";
+import { CRTable, ICRTable } from "./CRTable";
+import { DiceCollection, IDiceCollection } from "./DiceCollection";
+import { Feature, IFeature } from "./Feature";
 import { HitDice, IHitDice } from "./HitDice";
 import { IImmunityList, ImmunityList } from "./ImmunityList";
 import { ILanguages, Languages } from "./Languages";
 import { IResistanceList, ResistanceList } from "./ResistanceList";
-import { IRoll, Roll } from "./Roll";
 import { ISavingThrows, SavingThrows } from "./SavingThrows";
 import { ISkill, Skill } from "./Skill";
 import { ISpeedList, SpeedList } from "./SpeedList";
-import { ITrait, Trait } from "./Trait";
 import { IVulnerabilityList, VulnerabilityList } from "./VulnerabilityList";
 
 import { Alignment, Size, Type } from "./enums";
 
+import { modifierStr} from "./utilities";
+
 export interface IMonster {
     name: string;
+    shortName: string;
     size: Size;
     type: Type;
     tags: string[];
     alignment: Alignment;
     armorList: IArmorList;
     hp: number;
-    hpRoll: IRoll;
+    hpRoll: IDiceCollection;
     speeds: ISpeedList;
     abilityScores: IAbilityScores;
     savingThrows: ISavingThrows;
@@ -39,16 +41,17 @@ export interface IMonster {
     resistances: IResistanceList;
     immunities: IImmunityList;
     vulnerabilities: IVulnerabilityList;
-    actions: IActionList;
-    traits: ITrait[];
+    features: IFeature[];
+    legendaryActionsIntro: string;
+
     hitPointMultiplier: number;
     hitPointMultiplierNote: string;
     effectiveHitPoints: number;
     effectiveHitPointsNote: string;
-    completeActions: ICompleteAction[];
+    challengeRatingNote: string; 
+
     completeSkills: ICompleteSkill[];
     completeSavingThrows: ICompleteSavingThrows;
-    processCompleteActions(): void;
     processCompleteSkills(): void;
     processCompleteSavingThrows(): void;
 }
@@ -70,20 +73,31 @@ export class Monster implements IMonster {
     public resistances: ResistanceList = new ResistanceList();
     public immunities: ImmunityList = new ImmunityList();
     public vulnerabilities: VulnerabilityList = new VulnerabilityList();
-    public traits: Trait[] = [];
-    public actions: ActionList = new ActionList();
+    public features: Feature[] = [];
+    public legendaryActionsIntro = "";
+
     public hitPointMultiplier: number = 1;
     public hitPointMultiplierNote: string = "";
-    public completeActions: CompleteAction[] = [];
     public completeSkills: CompleteSkill[] = [];
     public completeSavingThrows: ICompleteSavingThrows = null;
+
+    private privShortName: string = "";
+
+    public get shortName(): string {
+        if(this.privShortName !== "") { return this.privShortName; }
+        return this.name;
+    }
+
+    public set shortName(name: string) {
+        this.privShortName = name;
+    }
 
     public get hp(): number {
         return Math.floor(this.hitDice.hp + (this.abilityScores.CON.modifier * this.hitDice.numberDice));
     }
 
-    public get hpRoll(): Roll {
-        return new Roll(this.hitDice.numberDice, this.hitDice.dieSize, this.abilityScores.CON.modifier * this.hitDice.numberDice);
+    public get hpRoll(): DiceCollection {
+        return new DiceCollection(this.hitDice.numberDice, this.hitDice.dieSize, this.abilityScores.CON.modifier * this.hitDice.numberDice);
     }
 
     public get ac(): number {
@@ -132,14 +146,40 @@ export class Monster implements IMonster {
         return desc;
     }
 
-    public processCompleteActions(): void {
-        this.completeActions = [];
+    public get challengeRatingNote(): string {
+        let crTable = new CRTable();
+        
+        let defensiveCRByHP = crTable.getDefensiveCRByHitPoints(this.effectiveHitPoints); 
+        let defensiveCrRankByHP = crTable.getDefensiveCRRankByHitPoints(this.effectiveHitPoints);
+        let expectedAC = crTable.getExpectedACByHitPoints(this.effectiveHitPoints); 
+        let ac = this.ac;
+        let acDiff = ac - expectedAC;
+        let acRanksofDiff = Math.floor((ac - expectedAC)/2); 
+        let finalDefensiveCr = crTable.getCREntryByRank(defensiveCrRankByHP + acRanksofDiff);
 
-        for (const action of this.actions.actions) {
-            const completeAction = new CompleteAction(action, this);
-            this.completeActions.push(completeAction);
-        }
+        let s = "";
+        s += "Defensive CR by HP: " + defensiveCRByHP + "; ";
+        s += "Defensive CR Rank by HP: " + defensiveCrRankByHP + "; ";
+        s += "Expected AC by HP: " + expectedAC + "; "; 
+        s += "Actual AC:" + ac +"; "
+        s += "Actual AC - Expected AC: " + acDiff + "; "
+        s += "AC degrees of diff: " + modifierStr(acRanksofDiff) + "; "
+        s += "Final Defensive CR: " + finalDefensiveCr.cr +". "
+        return s;
     }
+
+
+
+    // public processCompleteActions(): void {
+    //     this.completeActions = [];
+
+    //     for (const action of this.actions.actions) {
+    //         if (action instanceof Action) {
+    //             const completeAction = new CompleteAction(action, this);
+    //             this.completeActions.push(completeAction);
+    //         }
+    //     }
+    // }
 
     public processCompleteSkills(): void {
         this.completeSkills = [];
